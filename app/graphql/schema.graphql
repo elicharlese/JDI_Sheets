@@ -1,0 +1,85 @@
+type Marketplace {
+  #Marketplace ID
+  id: ID!
+  #Marketplace Name
+  name: String!
+  #Marketplace Slug
+  slug: String!
+}
+
+type ProductLine {
+  #Product line ID
+  id: ID!
+  #Product Line Name
+  name: String!
+  #Marketplace ID
+  marketplaceId: ID!
+  #Product Line Slug
+  slug: String!
+}
+
+type Product {
+  #Product ID
+  id: ID!
+  #Product Name
+  name: String!
+  #Variants of the Product
+  variants: [Variant!]!
+  #Product Line ID
+  productLineId: ID!
+  #Product Slug
+  slug: String!
+}
+
+type Variant {
+  #Variant ID
+  id: ID!
+  #Variant Name
+  name: String!
+  #Product ID
+  productId: ID!
+  #Inventory quantity
+  inventoryQuantity: Int!
+  #Inventory quantity in stock
+  inventoryQuantityInStock: Int!
+  #Inventory snapshot
+  inventorySnapshots: [InventorySnapshot!]!
+}
+
+type InventorySnapshot {
+  #Inventory Snapshot ID
+  id: ID!
+  #Inventory snapshot timestamp
+  timestamp: DateTime!
+  #Product ID
+  productId: ID!
+  #Variant ID
+  variantId: ID!
+  #Inventory quantity
+  inventoryQuantity: Int!
+}
+
+"""
+The schema defines the types for a shopify store's inventory. 
+It includes marketplaces, product lines, products, variants, inventory snapshots and their relationships.
+"""
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+"""
+The Query type defines the entry points for querying the data.
+"""
+type Query {
+  marketplaces: [Marketplace!]!
+  products(marketplaceSlug: String!, productLineSlug: String!): [Product!]!
+  product(id: ID!): Product!
+}
+
+"""
+The Mutation type defines the entry points for modifying the data.
+"""
+type Mutation {
+  updateInventoryQuantity(variantId: ID!, quantity: Int!): Variant!
+}

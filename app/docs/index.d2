@@ -1,0 +1,46 @@
+  graph LR;
+  
+  // Data Sources
+  subgraph "Data Sources" {
+    rank=same;
+    
+    ecommerce_marketplace_1 [shape=box];
+    ecommerce_marketplace_2 [shape=box];
+    ecommerce_marketplace_3 [shape=box];
+    // ... (add more if needed)
+  }
+
+  // Data Processing
+  api_server [shape=box];
+
+  // Data Storage
+  master_sheet [shape=box];
+
+  // Data Flow
+  ecommerce_marketplace_1 -> api_server;
+  ecommerce_marketplace_2 -> api_server;
+  ecommerce_marketplace_3 -> api_server;
+  // ... (add more if needed)
+  api_server -> master_sheet;
+
+  // File Structure
+  subgraph "File Structure" {
+    rank=same;
+    
+    scripts [shape=box];
+    models [shape=box];
+    utils [shape=box];
+    // ... (add more if needed)
+  }
+
+  // Relationships
+  scripts -> api_server;
+  models -> api_server;
+  utils -> api_server;
+
+  // Legend
+  legend [shape=box];
+  legend -> "Data Sources" [label="Ecommerce Marketplaces"];
+  legend -> api_server [label="API Server"];
+  legend -> master_sheet [label="Master Sheet"];
+  legend -> "File Structure" [label="Project Files"];
