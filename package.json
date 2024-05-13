@@ -1,16 +1,24 @@
 {
-
- "name" : "new_project",
- "author" : "your_name", 
- "version" :"1.0.0"
- "
- "main": "index.js",
- "keywords" :"node, express, graphql, apollo",
-  "scripts": {"start": "node index.js"},
+  "name": "jdisheets",
+  "version": "1.0.0",
+  "description": "##",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js",
+    "docker:up": "docker-compose -f ../docker-compose.yml up -d",
+    "docker:down": "docker-compose -f ../docker-compose.yml down",
+    "docker:build": "docker-compose -f ../docker-compose.yml up --build -d"
+  }
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-   "express": "4.17.3", 
-   "graphql": "15.8.0", 
-   "body-parser":"1.20.1",
-   }
-  "devDependencies": {"apollo-server-express": "2.17.1"}
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3",
+    "typeorm": "^0.3.20"
+  }
 }
